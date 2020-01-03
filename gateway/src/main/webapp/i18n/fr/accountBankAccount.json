@@ -1,0 +1,27 @@
+{
+  "gatewayApp": {
+    "accountBankAccount": {
+      "home": {
+        "title": "BankAccounts",
+        "createLabel": "Créer un nouveau Bank Account",
+        "createOrEditLabel": "Créer ou éditer un Bank Account",
+        "notFound": "Aucun Bank Account trouvé"
+      },
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Bank Account {{ id }} ?"
+      },
+      "detail": {
+        "title": "Bank Account"
+      },
+      "number": "Number",
+      "enabled": "Enabled"
+    }
+  },
+  "accountApp": {
+    "accountBankAccount": {
+      "created": "Un nouveau Bank Account a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Bank Account avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Bank Account avec l'identifiant {{ param }} a été supprimé"
+    }
+  }
+}
