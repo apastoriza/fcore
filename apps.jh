@@ -1,0 +1,104 @@
+application {
+  config {
+    baseName gateway,
+    packageName com.fcore.gateway,
+    applicationType gateway,
+    authenticationType jwt,
+    devDatabaseType h2Memory,
+    prodDatabaseType postgresql,
+    enableHibernateCache true,
+    serviceDiscoveryType eureka,
+    testFrameworks [protractor]
+  }
+  entities *
+}
+
+application {
+  config {
+    baseName customer,
+    packageName com.fcore.customer,
+    applicationType microservice,
+    authenticationType jwt,
+    devDatabaseType h2Memory,
+    prodDatabaseType postgresql,
+    enableHibernateCache true,
+    cacheProvider no,
+    serverPort 8081,
+    serviceDiscoveryType eureka,
+    enableSwaggerCodegen true
+  }
+  entities Customer
+}
+
+application {
+  config {
+    baseName account,
+    packageName com.fcore.account,
+    applicationType microservice,
+    authenticationType jwt,
+    devDatabaseType h2Memory,
+    prodDatabaseType postgresql,
+    enableHibernateCache true,
+    cacheProvider no,
+    serverPort 8082,
+    serviceDiscoveryType eureka
+    enableSwaggerCodegen true
+  }
+  entities BankAccount
+}
+
+application {
+  config {
+    baseName contract,
+    packageName com.fcore.contract,
+    applicationType microservice,
+    authenticationType jwt,
+    devDatabaseType h2Memory,
+    prodDatabaseType postgresql,
+    enableHibernateCache true,
+    cacheProvider no,
+    serverPort 8083,
+    serviceDiscoveryType eureka
+    enableSwaggerCodegen true
+  }
+  entities Contract
+}
+
+entity Customer {
+  name String required minlength(3),
+  legalId String required minlength(3),
+  enabled Boolean required
+}
+
+entity Client {
+  email String required minlength(6),
+  banned Boolean required
+}
+
+entity BankAccount {
+  number String required minlength(1),
+  enabled Boolean required
+}
+
+entity Contract{
+  documentNumber String required minlength(1),
+  enabled Boolean required
+}
+
+relationship OneToOne {
+  Client{user(login)} to User
+}
+
+paginate all with infinite-scroll
+
+microservice Customer with customer
+microservice BankAccount with account
+microservice Contract with contract
+
+// will be created under 'docker-compose' folder
+deployment {
+  deploymentType docker-compose
+  appsFolders [gateway, customer, account, contract]
+  dockerRepositoryName "fcore"
+  consoleOptions [zipkin]
+}

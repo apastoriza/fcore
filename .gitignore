@@ -1,3 +1,15 @@
+# Any Other Git Files #
+*/**/.git*
+
+#Java Binary
+*.class
+*.jar
+
+# Package Files #
+*.war
+*.ear
+
+# Maven #
 target/
 pom.xml.tag
 pom.xml.releaseBackup
@@ -9,3 +21,19 @@ buildNumber.properties
 .mvn/timing.properties
 # https://github.com/takari/maven-wrapper#usage-without-binary-jar
 .mvn/wrapper/maven-wrapper.jar
+
+# Avoid ignoring Maven wrapper jar file (.jar files are usually ignored)
+!/.mvn/wrapper/maven-wrapper.jar
+
+# IntelliJ Files #
+*.iml
+*.idea
+
+# Eclipse Files #
+*.project
+*.classpath
+.settings
+.springBeans
+
+#R Studio
+.Rhistory
